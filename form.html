@@ -83,6 +83,14 @@
         input[type="checkbox"] {
             margin-right: 5px;
         }
+
+        #dealer-group {
+        display: none;
+    }
+    
+    #dealer-group.visible {
+        display: block;
+    }
     </style>
 </head>
 <body>
@@ -94,29 +102,99 @@
             </div>
 
             <div class="form-group">
-                <label for="message">Bericht:</label>
-                <textarea id="message" name="message" rows="4" required></textarea>
+                <label for="name">E-mailadres:</label>
+                <input type="text" id="email" name="email" required>
             </div>
 
             <div class="form-group">
-                <label>Interesse in:</label>
-                <div class="checkbox-group">
-                    <label><input type="checkbox" name="interests" value="Lezen"> Lezen</label>
-                    <label><input type="checkbox" name="interests" value="Sport"> Sport</label>
-                    <label><input type="checkbox" name="interests" value="Muziek"> Muziek</label>
-                    <label><input type="checkbox" name="interests" value="Tech"> Tech</label>
-                </div>
+                <label for="name">Telefoonnummer:</label>
+                <input type="text" id="tel" name="tel">
             </div>
 
             <div class="form-group">
                 <label for="country">Land:</label>
                 <select id="country" name="country" required>
                     <option value="">Selecteer een land</option>
-                    <option value="USA">Trump Country</option>
-                    <option value="VK">VK</option>
-                    <option value="Canada">Canada</option>
-                    <option value="Duitsland">Duitsland</option>
+                    <option value="Belgi&#235;">Belgi&#235;</option>
+                    <option value="Luxembourg">Luxembourg</option>
+                    <option value="Nederland">Nederland</option>
                 </select>
+            </div>
+
+            <script>
+// Add this before the existing script content
+const dealersByCountry = {
+    "België": [
+        "Honda Antwerpen",
+        "Honda Brussel",
+        "Honda Gent"
+    ],
+    "Luxembourg": [
+        "Honda Luxembourg City",
+        "Honda Esch-sur-Alzette"
+    ],
+    "Nederland": [
+        "Honda Amsterdam",
+        "Honda Rotterdam",
+        "Honda Den Haag",
+        "Honda Utrecht"
+    ]
+};
+
+document.getElementById('country').addEventListener('change', function() {
+    const dealerSelect = document.getElementById('dealer');
+    const dealerGroup = document.getElementById('dealer-group');
+    dealerSelect.innerHTML = '<option value="">Selecteer een regio</option>';
+    
+    const selectedCountry = this.value;
+    const dealers = dealersByCountry[selectedCountry] || [];
+
+    dealerGroup.classList.toggle('visible', selectedCountry !== '');
+    
+    dealers.forEach(dealer => {
+        const option = document.createElement('option');
+        option.value = dealer;
+        option.textContent = dealer;
+        dealerSelect.appendChild(option);
+    });
+});
+</script>
+
+<div class="form-group" id="dealer-group">
+    <label for="dealer">Dealer:</label>
+    <select id="dealer" name="dealer" required>
+        <option value="">Selecteer eerst een land</option>
+    </select>
+</div>
+
+            <div class="form-group">
+                <label>Aanvraag:</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="request" value="Proefrit"> Proefrit</label>
+                    <label><input type="checkbox" name="request" value="Brochure"> Brochure</label>
+                    <label><input type="checkbox" name="request" value="Prijslijst"> Prijslijst</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Interesse in model:</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="model" value="e:Ny1"> e:Ny1</label>
+                    <label><input type="checkbox" name="model" value="CR-V Full Hybrid"> CR-V Full Hybrid</label>
+                    <label><input type="checkbox" name="model" value="CR-V Plug-in Hybrid"> CR-V Plug-in Hybrid</label>
+                    <label><input type="checkbox" name="model" value="ZR-V"> ZR-V</label>
+                    <label><input type="checkbox" name="model" value="HR-V"> HR-V</label>
+                    <label><input type="checkbox" name="model" value="Civic"> Civic</label>
+                    <label><input type="checkbox" name="model" value="Jazz"> Jazz</label>
+                    <label><input type="checkbox" name="model" value="Civic Type R"> Civic Type R</label>
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <label for="message">Extra opmerkingen:</label>
+                <textarea id="message" name="message" rows="4"></textarea>
             </div>
 
             <button type="submit">PDF aanmaken</button>
