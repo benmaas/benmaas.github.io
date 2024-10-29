@@ -97,34 +97,34 @@
     <div class="container">
         <form id="myForm">
             <div class="form-group">
-                <label for="name">Naam:</label>
+                <label for="name">Name:</label>
                 <input type="text" id="name" name="name" required>
             </div>
 
             <div class="form-group">
-                <label for="name">E-mailadres:</label>
+                <label for="name">E-mail:</label>
                 <input type="text" id="email" name="email" required>
             </div>
 
             <div class="form-group">
-                <label for="name">Telefoonnummer:</label>
+                <label for="name">Phone number:</label>
                 <input type="text" id="tel" name="tel">
             </div>
 
             <div class="form-group">
-                <label for="country">Land:</label>
+                <label for="country">Country:</label>
                 <select id="country" name="country" required>
-                    <option value="">Selecteer een land</option>
-                    <option value="Belgi&#235;">Belgi&#235;</option>
+                    <option value="">Select a country</option>
+                    <option value="Belgium">Belgium</option>
                     <option value="Luxembourg">Luxembourg</option>
-                    <option value="Nederland">Nederland</option>
+                    <option value="The Netherlands">The Netherlands</option>
                 </select>
             </div>
 
             <script>
 // Add this before the existing script content
 const dealersByCountry = {
-    "België": [
+    "Belgium": [
         "Honda Antwerpen",
         "Honda Brussel",
         "Honda Gent"
@@ -133,7 +133,7 @@ const dealersByCountry = {
         "Honda Luxembourg City",
         "Honda Esch-sur-Alzette"
     ],
-    "Nederland": [
+    "The Netherlands": [
         "Honda Amsterdam",
         "Honda Rotterdam",
         "Honda Den Haag",
@@ -144,7 +144,7 @@ const dealersByCountry = {
 document.getElementById('country').addEventListener('change', function() {
     const dealerSelect = document.getElementById('dealer');
     const dealerGroup = document.getElementById('dealer-group');
-    dealerSelect.innerHTML = '<option value="">Selecteer een regio</option>';
+    dealerSelect.innerHTML = '<option value="">Select a region</option>';
     
     const selectedCountry = this.value;
     const dealers = dealersByCountry[selectedCountry] || [];
@@ -161,23 +161,23 @@ document.getElementById('country').addEventListener('change', function() {
 </script>
 
 <div class="form-group" id="dealer-group">
-    <label for="dealer">Dealer regio:</label>
+    <label for="dealer">Dealer region:</label>
     <select id="dealer" name="dealer" required>
-        <option value="">Selecteer eerst een land</option>
+        <option value=""></option>
     </select>
 </div>
 
             <div class="form-group">
-                <label>Aanvraag:</label>
+                <label>Request:</label>
                 <div class="checkbox-group">
-                    <label><input type="checkbox" name="request" value="Proefrit"> Proefrit</label>
+                    <label><input type="checkbox" name="request" value="Testdrive"> Testdrive</label>
                     <label><input type="checkbox" name="request" value="Brochure"> Brochure</label>
-                    <label><input type="checkbox" name="request" value="Prijslijst"> Prijslijst</label>
+                    <label><input type="checkbox" name="request" value="Pricelist"> Pricelist</label>
                 </div>
             </div>
 
             <div class="form-group">
-                <label>Interesse in model:</label>
+                <label>Interest in model:</label>
                 <div class="checkbox-group">
                     <label><input type="checkbox" name="model" value="e:Ny1"> e:Ny1</label>
                     <label><input type="checkbox" name="model" value="CR-V Full Hybrid"> CR-V Full Hybrid</label>
@@ -193,11 +193,11 @@ document.getElementById('country').addEventListener('change', function() {
 
 
             <div class="form-group">
-                <label for="message">Extra opmerkingen:</label>
+                <label for="message">Extra notes:</label>
                 <textarea id="message" name="message" rows="4"></textarea>
             </div>
 
-            <button type="submit">PDF aanmaken</button>
+            <button type="submit">Create PDF</button>
         </form>
     </div>
 
